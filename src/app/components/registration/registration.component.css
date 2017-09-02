@@ -15,3 +15,15 @@
     z-index: 10000;
     position: relative;
 }
+
+.big-font {
+    font-size: 16px;
+}
+
+.green {
+    color:green;
+}
+
+.red {
+    color: red
+}

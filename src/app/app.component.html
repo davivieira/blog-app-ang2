@@ -1,3 +1,27 @@
-<h1>
-  {{title}}
-</h1>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Blog App</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="!userService.isLoggedIn()"><a [routerLink]="['login']">Login</a></li>
+        <li *ngIf="!userService.isLoggedIn()"><a [routerLink]="['register']">Register</a></li>
+        <li *ngIf="userService.isLoggedIn()"><a [routerLink]="['profile']">Profile</a></li>
+        <li *ngIf="userService.isLoggedIn()"><a [routerLink]="['']" (click)="userService.logout()">Logout</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<flash-messages></flash-messages>
+<router-outlet></router-outlet>

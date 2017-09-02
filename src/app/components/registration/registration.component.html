@@ -1,0 +1,62 @@
+<div class="jumbotron">
+  <div class="container">
+    <div class="col-md-8 col-md-offset-2 col-sm-12">
+      <br>
+      <form [formGroup]="registerForm" class="row" (submit)="register($event)">
+        <div class="form-group">
+          <label>Name</label>
+          <div class="input-group">
+            <input [(ngModel)]="user.name" type="text" name="name" formControlName="name" class="form-control" aria-describedby="correct-addon">
+            <span *ngIf="!registerForm.controls.name.invalid" class="input-group-addon alert-default"><i class="glyphicon glyphicon-ok green"></i></span>
+            <span *ngIf="registerForm.controls.name.invalid" class="input-group-addon alert-default"><i class="glyphicon glyphicon-remove"></i></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Email address</label>
+          <div class="input-group">
+            <input [(ngModel)]="user.email" type="email" name="email" formControlName="email" class="form-control">
+            <span *ngIf="!registerForm.controls.email.invalid" class="input-group-addon alert-default"><i class="glyphicon glyphicon-ok green"></i></span>
+            <span *ngIf="registerForm.controls.email.invalid" class="input-group-addon alert-default"><i class="glyphicon glyphicon-remove"></i></span>
+          </div>
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div class="form-group">
+          <label>User</label>
+          <div class="input-group">
+            <input [(ngModel)]="user.username"
+                  type="text"
+                  name="username"
+                  formControlName="username"
+                  class="form-control"
+                  (keyup)="startCounting()"
+                  (keydown)="stopCounting()">
+            <user-span (isValid)="validateUserField($event)"  class="input-group-addon" [icon]="userIcon"></user-span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input [(ngModel)]="user.password" type="password" name="password" formControlName="password" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>Confirm password</label>
+          <div class="input-group">
+            <input type="password" name="passwordConfirm" formControlName="passwordConfirm" class="form-control">
+            <span *ngIf="!registerForm.controls.passwordConfirm.invalid && passwordMatch" class="input-group-addon alert-default"><i class="glyphicon glyphicon-ok green"></i></span>
+            <span *ngIf="registerForm.controls.passwordConfirm.invalid && !passwordMatch" class="input-group-addon alert-default"><i class="glyphicon glyphicon-remove"></i></span>
+            <span *ngIf="!registerForm.controls.passwordConfirm.invalid && !passwordMatch" class="input-group-addon alert-default"><i class="glyphicon glyphicon-remove"></i></span>
+            <span *ngIf="registerForm.controls.passwordConfirm.invalid && passwordMatch" class="input-group-addon alert-default"><i class="glyphicon glyphicon-remove"></i></span>
+          </div>
+          <small id="passwdHelp" class="form-text text-muted">Should match with 'Password'.</small>
+        </div>
+
+        <button type="submit" class="btn btn-default col-md-12" [(disabled)]="!isFormValid">
+                Sign Up
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
